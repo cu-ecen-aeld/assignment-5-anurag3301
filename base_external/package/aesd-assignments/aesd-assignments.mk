@@ -26,6 +26,9 @@ define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 $(@D)/finder-app/writer $(TARGET_DIR)/bin
 	$(INSTALL) -m 0755 $(@D)/finder-app/finder.sh $(TARGET_DIR)/bin
 	$(INSTALL) -m 0755 $(@D)/finder-app/finder-test.sh $(TARGET_DIR)/bin
+	@mkdir -p $(TARGET_DIR)/etc/ssh
+	@echo "PermitRootLogin yes" > $(TARGET_DIR)/etc/ssh/sshd_config
+	@echo "PasswordAuthentication yes" >> $(TARGET_DIR)/etc/ssh/sshd_config
 endef
 
 $(eval $(generic-package))
