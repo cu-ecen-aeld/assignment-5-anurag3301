@@ -6,7 +6,7 @@
 ##############################################################
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
-AESD_ASSIGNMENTS_VERSION = '04482aea126b5de9328fa79b9f5c0c619fcccb68'
+AESD_ASSIGNMENTS_VERSION = 'e3d10d662e9283cc788062d89bcd5669538ad748'
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
@@ -16,6 +16,7 @@ AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
 
 define AESD_ASSIGNMENTS_BUILD_CMDS
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
+	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server all
 endef
 
 # TODO add your writer, finder and finder-test utilities/scripts to the installation steps below
@@ -29,6 +30,9 @@ define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
 	@mkdir -p $(TARGET_DIR)/etc/ssh
 	@echo "PermitRootLogin yes" > $(TARGET_DIR)/etc/ssh/sshd_config
 	@echo "PasswordAuthentication yes" >> $(TARGET_DIR)/etc/ssh/sshd_config
+	$(INSTALL) -d 0755 $(TARGET_DIR)/usr/bin
+	$(INSTALL) -m 0755 $(@D)/server/aesdsocket $(TARGET_DIR)/usr/bin
+	$(INSTALL) -m 0755 $(@D)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
 endef
 
 $(eval $(generic-package))
