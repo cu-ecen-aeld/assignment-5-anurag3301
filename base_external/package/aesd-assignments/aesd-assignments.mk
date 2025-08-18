@@ -6,17 +6,18 @@
 ##############################################################
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
-AESD_ASSIGNMENTS_VERSION = 'e3d10d662e9283cc788062d89bcd5669538ad748'
+AESD_ASSIGNMENTS_VERSION = 'c8992e67a2469d75c0c52561bf394475594c4fc8'
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
 AESD_ASSIGNMENTS_SITE = 'git@github.com:cu-ecen-aeld/assignments-3-and-later-anurag3301.git'
 AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
+AESDSOCKET_CFLAGS = -DUSE_AESD_CHAR_DEVICE=1
 
 define AESD_ASSIGNMENTS_BUILD_CMDS
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
-	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server all
+	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server all CFLAGS="$(TARGET_CFLAGS) $(AESDSOCKET_CFLAGS)"
 endef
 
 # TODO add your writer, finder and finder-test utilities/scripts to the installation steps below
