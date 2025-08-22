@@ -6,7 +6,7 @@
 ##############################################################
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
-AESD_ASSIGNMENTS_VERSION = 'c8992e67a2469d75c0c52561bf394475594c4fc8'
+AESD_ASSIGNMENTS_VERSION = 86d1454fa921408290086df8deabbd8cced8e14f
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
